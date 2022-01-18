@@ -1,6 +1,15 @@
+#dodane przeze mnie
+*.depend
+*.layout
+*.cbp
+*.txt
+*.uxf
+*.xml
+img/*
+snd/*
 # Prerequisites
 *.d
-
+*.dfm
 # Compiled Object files
 *.slo
 *.lo
@@ -30,3 +39,4 @@
 *.exe
 *.out
 *.app
+
