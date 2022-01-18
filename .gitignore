@@ -6,7 +6,6 @@
 *.uxf
 *.xml
 img/*
-snd/*
 # Prerequisites
 *.d
 *.dfm
