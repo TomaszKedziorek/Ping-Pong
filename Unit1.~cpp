@@ -19,9 +19,6 @@ TForm1 *Form1;
     AnsiString hitSound(){
         return "snd/hit (" + IntToStr( los(1, 5)) +").wav";
     }
-    AnsiString chicflapSound(){
-        return "snd/chicflap (" + IntToStr( los(1, 4)) +").wav";
-    }
     int speed;
     int x;
     int y;

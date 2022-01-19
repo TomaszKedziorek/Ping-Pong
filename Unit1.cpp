@@ -16,9 +16,6 @@ TForm1 *Form1;
         }while( n==0);
         return  n;
     }
-    AnsiString hitSound(){
-        return "snd/hit (" + IntToStr( los(1, 5)) +").wav";
-    }
     int speed;
     int x;
     int y;
@@ -41,12 +38,12 @@ void __fastcall TForm1::ballTimerTimer(TObject *Sender)
     //odbicie od lewej sciany
     if ( ball -> Left -4 <= background -> Left ){
         x = -x;
-        sndPlaySound( hitSound().c_str(), SND_ASYNC);
+        sndPlaySound( (MP1 ->FileName).c_str(), SND_ASYNC);
     }
     //odbicie od prawej sciany
     if ( ball -> Left + ball -> Width + 4 >= background -> Width){
         x = -x;
-        sndPlaySound( hitSound().c_str(), SND_ASYNC);
+        sndPlaySound( (MP2 ->FileName).c_str(), SND_ASYNC);
     }
 
     //przegrana padel 1
@@ -65,9 +62,10 @@ void __fastcall TForm1::ballTimerTimer(TObject *Sender)
     else if( ball -> Left > padel1 -> Left - ball -> Width &&
              ball -> Left < padel1 -> Left + padel1 -> Width &&
              ball -> Top + ball -> Height >= padel1 -> Top ) {
-             sndPlaySound( hitSound().c_str(), SND_ASYNC);
+             sndPlaySound( (MP3 ->FileName).c_str(), SND_ASYNC);
              if ( y > 0 ) {
-                y = -los(6 , 10);
+                y = -los(6 , 11);
+                x = los(-1,1) * los(6,11);
              }
     }
     //przegrana padel 2
@@ -86,9 +84,10 @@ void __fastcall TForm1::ballTimerTimer(TObject *Sender)
     else if( ball -> Left + ball-> Width  > padel2 -> Left  &&
              ball -> Left < padel2 -> Left + padel2 -> Width &&
              ball -> Top  <= padel2 -> Top + padel2 -> Height) {
-             sndPlaySound( hitSound().c_str(), SND_ASYNC);
+             sndPlaySound( (MP5 ->FileName).c_str(), SND_ASYNC);
              if ( y < 0 ) {
-                y = los(6 , 10);
+                y = los(6 , 11);
+                x = los(-1,1) * los(1,11);
              }
     }
 
@@ -105,6 +104,8 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key,
     //padel 2
     if( Key == 'a' || Key == 'A' ) padel2LeftTimer -> Enabled = true;
     if( Key == 'd' || Key == 'D'  ) padel2RightTimer -> Enabled = true;
+    //spacja nowa runda
+    if( Key == VK_SPACE && Button2 -> Visible == true ) Form1 -> Button2Click( Form1 );
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::FormKeyUp(TObject *Sender, WORD &Key,
@@ -173,12 +174,29 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
-       pingpong -> Visible = true;
-       Button1 -> Visible = true;
-       AnsiString text1 = "Witamy w Ping-Pong\n\n Niebieski: a-lewo, d-prawo\n Zielony: strza³ki prowo lewo";
-       AnsiString text2 = "\n\nPrêdkoœæ pi³ki jest lsowa przy ka¿dym odbiciu.";
-       AnsiString text3 = text1 + text2;
-       Application -> MessageBox(text3.c_str(), "Sterowanie", MB_OK );
+    MP1 -> Open();
+    MP2 -> Open();
+    MP3 -> Open();
+    MP4 -> Open();
+    MP5 -> Open();
+    pingpong -> Visible = true;
+    Button1 -> Visible = true;
+    AnsiString text1 = "Witamy w Ping-Pong\n\n Niebieski: a-lewo, d-prawo\n Zielony: strza³ki prowo lewo";
+    AnsiString text2 = "\n\nPrêdkoœæ pi³ki jest lsowa przy ka¿dym odbiciu.";
+    AnsiString text3 = "\n\nSpacja - nowa runda.";
+    AnsiString text4 = text1 + text3 + text2;
+    Application -> MessageBox( text4.c_str(), "Sterowanie", MB_OK );
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action)
+{
+    MP1 -> Close();
+    MP2 -> Close();
+    MP3 -> Close();
+    MP4 -> Close();
+    MP5 -> Close();
+}
+//---------------------------------------------------------------------------
+
 

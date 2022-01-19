@@ -1,11 +1,12 @@
 object Form1: TForm1
-  Left = 474
+  Left = 472
   Top = 147
   Align = alCustom
   AutoScroll = False
+  BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Ping-Pong'
   ClientHeight = 517
-  ClientWidth = 508
+  ClientWidth = 510
   Color = clBtnFace
   UseDockManager = True
   DockSite = True
@@ -23,7 +24,7 @@ object Form1: TForm1
   object background: TShape
     Left = 0
     Top = 0
-    Width = 508
+    Width = 510
     Height = 517
     Align = alClient
     Brush.Color = clMoneyGreen
