@@ -19,9 +19,6 @@ TForm1 *Form1;
     AnsiString hitSound(){
         return "snd/hit (" + IntToStr( los(1, 5)) +").wav";
     }
-    AnsiString chicflapSound(){
-        return "snd/chicflap (" + IntToStr( los(1, 4)) +").wav";
-    }
     int speed;
     int x;
     int y;
@@ -65,7 +62,7 @@ void __fastcall TForm1::ballTimerTimer(TObject *Sender)
         points -> Caption = IntToStr( greenPoints) + " : " +IntToStr( bluePoints);
     }
     //odbicie pilki ball od paletki padel1
-    else if( ball -> Left > padel1 -> Left - ball -> Width/2 &&
+    else if( ball -> Left > padel1 -> Left - ball -> Width &&
              ball -> Left < padel1 -> Left + padel1 -> Width &&
              ball -> Top + ball -> Height >= padel1 -> Top ) {
              sndPlaySound( hitSound().c_str(), SND_ASYNC);
@@ -86,7 +83,7 @@ void __fastcall TForm1::ballTimerTimer(TObject *Sender)
         points -> Caption = IntToStr( greenPoints) + " : " +IntToStr( bluePoints);
     }
     //odbicie pilki ball od paletki padel2
-    else if( ball -> Left + ball-> Width/2  > padel2 -> Left  &&
+    else if( ball -> Left + ball-> Width  > padel2 -> Left  &&
              ball -> Left < padel2 -> Left + padel2 -> Width &&
              ball -> Top  <= padel2 -> Top + padel2 -> Height) {
              sndPlaySound( hitSound().c_str(), SND_ASYNC);

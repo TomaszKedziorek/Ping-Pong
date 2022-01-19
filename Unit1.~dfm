@@ -1,12 +1,14 @@
 object Form1: TForm1
-  Left = 304
-  Top = 151
+  Left = 474
+  Top = 147
   Align = alCustom
   AutoScroll = False
   Caption = 'Ping-Pong'
   ClientHeight = 517
-  ClientWidth = 527
+  ClientWidth = 508
   Color = clBtnFace
+  UseDockManager = True
+  DockSite = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -21,7 +23,7 @@ object Form1: TForm1
   object background: TShape
     Left = 0
     Top = 0
-    Width = 527
+    Width = 508
     Height = 517
     Align = alClient
     Brush.Color = clMoneyGreen
@@ -140,6 +142,7 @@ object Form1: TForm1
     Width = 162
     Height = 20
     AutoSize = True
+    Center = True
     Picture.Data = {
       07544269746D617056260000424D56260000000000003600000028000000A200
       000014000000010018000000000020260000230B0000230B0000000000000000
@@ -456,6 +459,7 @@ object Form1: TForm1
     Width = 162
     Height = 20
     AutoSize = True
+    Center = True
     Picture.Data = {
       07544269746D617056260000424D56260000000000003600000028000000A200
       000014000000010018000000000020260000230B0000230B0000000000000000
